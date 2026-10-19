@@ -1,6 +1,9 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+
+import org.junit.platform.reporting.shadow.org.opentest4j.reporting.events.core.Data;
 
 /** 
  * MIT License
@@ -78,8 +81,11 @@ public class Projeto {
 	 * @return quantidade de dias desde a finalização, ou {@code -1} se o projeto ainda não foi finalizado
 	 */
 	public int diasAposFinalizacao() {
-		//TODO
-		return 0;
+		if(finalizadoEm == null){
+			return -1;
+		}
+		LocalDate hj= LocalDate.now();
+		return (int) finalizadoEm.until(hj, ChronoUnit.DAYS);
 	}
 
 	/**
